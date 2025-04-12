@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("config.php");
 
 // cek apakah tombol simpan sudah diklik atau blum?
@@ -17,14 +17,14 @@ if(isset($_POST['simpan'])){
     $sql = "UPDATE calon_siswa SET nama='$nama', alamat='$alamat', jenis_kelamin='$jk', agama='$agama', sekolah_asal='$sekolah' WHERE id=$id";
     $query = mysqli_query($db, $sql);
 
-    // apakah query update berhasil?
-    if( $query ) {
-        // kalau berhasil alihkan ke halaman list-siswa.php
-        header('Location: list-siswa.php');
+    if ($query) {
+        $_SESSION['flash'] = ['type' => 'success', 'message' => '✅ Data berhasil diEdit!'];
     } else {
-        // kalau gagal tampilkan pesan
-        die("Gagal menyimpan perubahan...");
+        $_SESSION['flash'] = ['type' => 'danger', 'message' => '❌ Data gagal diEdit!'];
     }
+
+    header("Location: list-siswa.php");
+    exit();
 
 
 } else {

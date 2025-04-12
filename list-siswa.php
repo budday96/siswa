@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("config.php");
 ?>
 <!DOCTYPE html>
@@ -40,6 +41,14 @@ include("config.php");
         <div class="card shadow-sm">
             <div class="card-header bg-white text-black">
                 <h2 class="text-center mb-0">Data Calon Mahasiswa</h2>
+                <!-- Alert Flash Message -->
+                <?php if (isset($_SESSION['flash'])): ?>
+                    <div class="alert alert-<?= $_SESSION['flash']['type'] ?> alert-dismissible fade show" role="alert">
+                        <?= $_SESSION['flash']['message'] ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <?php unset($_SESSION['flash']); ?>
+                <?php endif; ?>
             </div>
             <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
               <a href="form-daftar.php" class="btn btn-primary">
@@ -99,6 +108,16 @@ include("config.php");
     <script>
         new DataTable('#example');
         document.querySelector('label[for="dt-length-0"]').style.display = 'none'; // Hide "Show 10 entries" label
+    </script>
+    <!-- Auto-close alert setelah 4 detik -->
+    <script>
+        setTimeout(function () {
+            var alertNode = document.querySelector('.alert');
+            if (alertNode) {
+                var bsAlert = bootstrap.Alert.getOrCreateInstance(alertNode);
+                bsAlert.close();
+            }
+        }, 4000);
     </script>
 </body>
 </html>

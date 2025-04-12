@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("config.php");
 
 // cek apakah tombol daftar sudah diklik atau blum?
@@ -16,14 +16,14 @@ if(isset($_POST['daftar'])){
     $sql = "INSERT INTO calon_siswa (nama, alamat, jenis_kelamin, agama, sekolah_asal) VALUE ('$nama', '$alamat', '$jk', '$agama', '$sekolah')";
     $query = mysqli_query($db, $sql);
 
-    // apakah query simpan berhasil?
-    if( $query ) {
-        // kalau berhasil alihkan ke halaman index.php dengan status=sukses
-        header('Location: index.php?status=sukses');
+    if ($query) {
+        $_SESSION['flash'] = ['type' => 'success', 'message' => '✅ Data berhasil disimpan!'];
     } else {
-        // kalau gagal alihkan ke halaman indek.php dengan status=gagal
-        header('Location: index.php?status=gagal');
+        $_SESSION['flash'] = ['type' => 'danger', 'message' => '❌ Data gagal disimpan!'];
     }
+
+    header("Location: list-siswa.php");
+    exit();
 } else {
     die("Akses dilarang...");
 }

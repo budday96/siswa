@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("config.php");
 
 // kalau tidak ada id di query string
@@ -62,6 +62,14 @@ if (mysqli_num_rows($query) < 1) {
             <div class="card-header bg-primary text-white text-center">
               <h4>Edit Data Siswa</h4>
             </div>
+            <!-- Alert Flash Message -->
+              <?php if (isset($_SESSION['flash'])): ?>
+                  <div class="alert alert-<?= $_SESSION['flash']['type'] ?> alert-dismissible fade show" role="alert">
+                      <?= $_SESSION['flash']['message'] ?>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  <?php unset($_SESSION['flash']); ?>
+              <?php endif; ?>
             <div class="card-body">
               <form action="proses-edit.php" method="POST" class="needs-validation" novalidate>
                 <input type="hidden" name="id" value="<?php echo $siswa['id'] ?>" />
@@ -134,6 +142,15 @@ if (mysqli_num_rows($query) < 1) {
           }, false)
         })
       })()
+    </script>
+        <script>
+        setTimeout(function () {
+            var alertNode = document.querySelector('.alert');
+            if (alertNode) {
+                var bsAlert = bootstrap.Alert.getOrCreateInstance(alertNode);
+                bsAlert.close();
+            }
+        }, 4000);
     </script>
   </body>
 </html>
