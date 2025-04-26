@@ -1,3 +1,40 @@
+<?php
+// Memberi nilai awal kosong pada variabel
+$namaPesan = $emailPesan = $alamatPesan = $jenisKelaminPesan = $agamaPesan = $sekolahAsalPesan = "";
+ 
+session_start();
+
+// Memberi nilai baru pada variabel $namaPesan jika ada $_Session "namaPesan"
+if (isset($_SESSION['namaPesan'])){
+    $namaPesan = $_SESSION['namaPesan'];
+}
+
+// Memberi nilai baru pada variabel $emailPesan jika ada $_Session "namaPesan"
+if (isset($_SESSION['emailPesan'])){
+    $emailPesan = $_SESSION['emailPesan'];
+}
+
+if (isset($_SESSION['alamatPesan'])){
+  $alamatPesan = $_SESSION['alamatPesan'];
+}
+
+if (isset($_SESSION['jenisKelaminPesan'])){
+  $jenisKelaminPesan = $_SESSION['jenisKelaminPesan'];
+}
+
+if (isset($_SESSION['agamaPesan'])){
+  $agamaPesan = $_SESSION['agamaPesan'];
+}
+
+if (isset($_SESSION['sekolahAsalPesan'])){
+  $sekolahAsalPesan = $_SESSION['sekolahAsalPesan'];
+}
+session_unset();
+session_destroy();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,12 +80,17 @@
                 <div class="mb-3">
                   <label for="nama" class="form-label">Nama Lengkap</label>
                   <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama lengkap" required>
-                  <div class="invalid-feedback">Nama lengkap wajib diisi.</div>
+                  <span style="color:red;"> <?= $namaPesan ?></span>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" required>
+                  <span style="color:red;"> <?= $emailPesan ?></span>
                 </div>
                 <div class="mb-3">
                   <label for="alamat" class="form-label">Alamat</label>
                   <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat lengkap" required></textarea>
-                  <div class="invalid-feedback">Alamat wajib diisi.</div>
+                  <span style="color:red;"> <?= $alamatPesan ?></span>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Jenis Kelamin</label>
@@ -62,7 +104,7 @@
                       <label class="form-check-label" for="perempuan">Perempuan</label>
                     </div>
                   </div>
-                  <div class="invalid-feedback">Pilih salah satu jenis kelamin.</div>
+                  <span style="color:red;"> <?= $jenisKelaminPesan ?></span>
                 </div>
                 <div class="mb-3">
                   <label for="agama" class="form-label">Agama</label>
@@ -74,12 +116,12 @@
                     <option value="Budha">Budha</option>
                     <option value="Atheis">Atheis</option>
                   </select>
-                  <div class="invalid-feedback">Pilih agama.</div>
+                  <span style="color:red;"> <?= $agamaPesan ?></span>
                 </div>
                 <div class="mb-3">
                   <label for="sekolah_asal" class="form-label">Sekolah Asal</label>
                   <input type="text" class="form-control" id="sekolah_asal" name="sekolah_asal" placeholder="Masukkan nama sekolah asal" required>
-                  <div class="invalid-feedback">Sekolah asal wajib diisi.</div>
+                  <span style="color:red;"> <?= $sekolahAsalPesan  ?></span>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary" name="daftar">Daftar</button>

@@ -79,6 +79,11 @@ if (mysqli_num_rows($query) < 1) {
                   <div class="invalid-feedback">Nama lengkap wajib diisi.</div>
                 </div>
                 <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" value="<?php echo $siswa['email']?>" required>
+                  <div class="invalid-feedback">Nama lengkap wajib diisi.</div>
+                </div>
+                <div class="mb-3">
                   <label for="alamat" class="form-label">Alamat</label>
                   <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat lengkap" required><?php echo $siswa['alamat'] ?></textarea>
                   <div class="invalid-feedback">Alamat wajib diisi.</div>

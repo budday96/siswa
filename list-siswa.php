@@ -62,6 +62,7 @@ include("config.php");
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
+                                <th>Email</th>
                                 <th>Alamat</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Agama</th>
@@ -79,6 +80,7 @@ include("config.php");
                                 echo "<tr>";
                                   echo "<td>" . $no++ . "</td>";
                                   echo "<td>" . $siswa['nama'] . "</td>";
+                                  echo "<td>" . $siswa['email'] . "</td>";
                                   echo "<td>" . $siswa['alamat'] . "</td>";
                                   echo "<td>" . $siswa['jenis_kelamin'] . "</td>";
                                   echo "<td>" . $siswa['agama'] . "</td>";
