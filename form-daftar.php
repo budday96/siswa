@@ -1,7 +1,7 @@
 <?php
 // Memberi nilai awal kosong pada variabel
 $namaPesan = $emailPesan = $alamatPesan = $jenisKelaminPesan = $agamaPesan = $sekolahAsalPesan = "";
- 
+
 session_start();
 
 // Memberi nilai baru pada variabel $namaPesan jika ada $_Session "namaPesan"
